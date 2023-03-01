@@ -1,1 +1,1 @@
-# slack-log
+# slackのログを保管するもの
