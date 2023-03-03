@@ -69,7 +69,7 @@ def GetConversationInfo(channel_id: str) -> dict:
         while True:
             for i in conversation_data["messages"]:
                 conversation_dict[i["ts"]] = {
-                    "user": i["user"], "text": i["text"], "reply_count": i.get("reply_count", "0")}
+                    "user": i["user"], "text": i["text"], "reply_count": i.get("reply_count", 0)}
 
             if conversation_data["has_more"]:
                 # APIレートの調整
@@ -92,8 +92,8 @@ def GetAllConversationInfo(channnel_list: list) -> dict:
         # APIレートの調整
         time.sleep(1.35)
 
-        # if channel_id == "C1GQGJURK":
-        #     break
+        if channel_id == "C1GQGJURK":
+            break
 
     return ALLconversation_dict
 
