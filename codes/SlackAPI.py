@@ -136,9 +136,9 @@ def GetReplysInfo(channel_id: str, history_ts_list: list) -> dict:
     return reply_dict
 
 
-def GetAllReplyInfo(channnel_list: list, ALLconversation_dict: dict) -> dict:
+def GetAllReplyInfo(channel_list: list, ALLconversation_dict: dict) -> dict:
     ALLReply_dict = dict()
-    for channel_id in channnel_list:
+    for channel_id in channel_list:
         conversation_dict = ALLconversation_dict[channel_id]
 
         ts_HasReply_list = list()
