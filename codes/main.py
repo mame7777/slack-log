@@ -8,14 +8,14 @@ def main() -> int:
     # 環境変数の読み取り
     dotenv.load_dotenv()
     
-    SlackAPI.SendMessage("SlackBotのスクリプトが開始されました。")
+    SlackAPI.SendMessage("ログを取得するのスクリプトが開始されたよ")
     
     ChannelInfo = SlackAPI.GetChannelInfo()
     UserInfo = SlackAPI.GetUserInfo()
     ConversationInfo = SlackAPI.GetAllConversationInfo(list(ChannelInfo.keys()))
     print(SlackAPI.GetAllReplyInfo(list(ChannelInfo.keys()), ConversationInfo))
     
-    SlackAPI.SendMessage("SlackBotのスクリプトが正常終了しました。")
+    SlackAPI.SendMessage("ログを取得するのスクリプトが正常に終わったよ")
     return 0
 
 
