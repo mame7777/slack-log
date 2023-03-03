@@ -92,8 +92,8 @@ def GetAllConversationInfo(channnel_list: list) -> dict:
         # APIレートの調整
         time.sleep(1.35)
 
-        if channel_id == "C1GQGJURK":
-            break
+        # if channel_id == "C1GQGJURK":
+        #     break
 
     return ALLconversation_dict
 
@@ -128,7 +128,7 @@ def GetReplysInfo(channel_id: str, history_ts_list: list) -> dict:
                     reply_data = response.json()
                 else:
                     break
-            reply_dict[history_ts] = {"reply_dict": reply_dict_temp}
+            reply_dict[history_ts] = reply_dict_temp
 
         # APIレートの調整
         time.sleep(1.35)
