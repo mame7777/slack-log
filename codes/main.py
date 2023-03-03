@@ -7,17 +7,21 @@ import SlackAPI
 
 def init_main():
     ChannelInfo = SlackAPI.GetChannelInfo()
-    # UserInfo = SlackAPI.GetUserInfo()
-    # ConversationInfo = SlackAPI.GetAllConversationInfo(list(ChannelInfo.keys()))
-    # print(SlackAPI.GetAllReplyInfo(list(ChannelInfo.keys()), ConversationInfo))
+    UserInfo = SlackAPI.GetUserInfo()
+    ConversationInfo = SlackAPI.GetAllConversationInfo(list(ChannelInfo.keys()))
     
     cnx = DB.Connect()
     DB_CT = DB.CreateTable(cnx=cnx)
     # DB.Erase_All_Data(cnx)
     DB_CT.channel()
     DB_CT.user()
-    DB_CT.Conversation(channel_dict=ChannelInfo)  #これはチャンネル生成ごとに確認&実行
-    DB_CT.Reply(channel_dict=ChannelInfo)  #これはチャンネル生成ごとに確認&実行
+    DB_CT.Conversation(channel_dict=ChannelInfo)
+    #DB_CT.Reply(channel_dict=ChannelInfo)
+    
+    DB_I = DB.Insert(cnx=cnx)
+    # DB_I.channel(channel_dict=ChannelInfo)
+    # DB_I.user(user_dict=UserInfo)
+    DB_I.conversation(conversation_dict=ConversationInfo)
     DB.EndConnect(cnx)
 
 def main() -> int:
