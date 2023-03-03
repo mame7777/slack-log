@@ -1,12 +1,12 @@
-import requests
 import json
-import dotenv
 import os
 import time
 
+import dotenv
+import requests
+
+
 # 辞書型のチャンネルデータを取得
-
-
 def GetChannelInfo() -> dict:
     url = "https://slack.com/api/conversations.list"
     headers = {"Authorization": "Bearer " +
@@ -87,7 +87,8 @@ def GetConversationInfo(channel_id: str) -> dict:
 def GetAllConversationInfo(channnel_list: list) -> dict:
     ALLconversation_dict = dict()
     for channel_id in channnel_list:
-        ALLconversation_dict[channel_id] = GetConversationInfo(channel_id)
+        ALLconversation_dict[channel_id] = GetConversationInfo(
+            channel_id)
         # APIレートの調整
         time.sleep(1.35)
 
@@ -145,7 +146,8 @@ def GetAllReplyInfo(channnel_list: list, ALLconversation_dict: dict) -> dict:
             if int(conversation_dict[ts_in_loop]["reply_count"]) > 0:
                 ts_HasReply_list.append(ts_in_loop)
 
-        ALLReply_dict[channel_id] = GetReplysInfo(channel_id, ts_HasReply_list)
+        ALLReply_dict[channel_id] = GetReplysInfo(
+            channel_id, ts_HasReply_list)
 
         # if channel_id == "C1GQGJURK":
         #     break
@@ -153,12 +155,24 @@ def GetAllReplyInfo(channnel_list: list, ALLconversation_dict: dict) -> dict:
     return ALLReply_dict
 
 
+def SendMessage(text: str, username: str ='LogSaveBot', icon: str = ':pien:', channel: str='#bot_try') -> None:
+    requests.post(os.environ.get("WEB_HOOK_URL"), data=json.dumps({
+        # message
+        "text":text,
+        "username": username,
+        "icon_emoji": icon,
+        "channel": channel
+    }))
+
+
 def main() -> int:
     # 環境変数の読み取り
     dotenv.load_dotenv()
+
     ChannelInfo = GetChannelInfo()
     UserInfo = GetUserInfo()
-    ConversationInfo = GetAllConversationInfo(list(ChannelInfo.keys()))
+    ConversationInfo = GetAllConversationInfo(
+        list(ChannelInfo.keys()))
     print(GetAllReplyInfo(list(ChannelInfo.keys()), ConversationInfo))
     return 0
 
