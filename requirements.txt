@@ -2,6 +2,9 @@ autopep8==2.0.1
 certifi==2022.12.7
 charset-normalizer==3.0.1
 idna==3.4
+isort==5.12.0
+mysql-connector-python==8.0.32
+protobuf==3.20.3
 pycodestyle==2.10.0
 python-dotenv==1.0.0
 requests==2.28.2
