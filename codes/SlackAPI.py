@@ -68,8 +68,12 @@ def GetConversationInfo(channel_id: str) -> dict:
     if conversation_data["ok"]:
         while True:
             for i in conversation_data["messages"]:
-                conversation_dict[i["ts"]] = {
-                    "user": i["user"], "text": i["text"], "reply_count": i.get("reply_count", 0)}
+                if "user" in i.keys():
+                    conversation_dict[i["ts"]] = {
+                        "user": i["user"], "text": i["text"], "reply_count": i.get("reply_count", 0)}
+                if "bot_id" in i.keys():
+                    conversation_dict[i["ts"]] = {
+                        "user": i["bot_id"], "text": i["text"], "reply_count": i.get("reply_count", 0)}
 
             if conversation_data["has_more"]:
                 # APIレートの調整
