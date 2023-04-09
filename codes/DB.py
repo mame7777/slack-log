@@ -93,8 +93,8 @@ class CreateTable:
             try:
                 reply_query = '''CREATE TABLE IF NOT EXISTS '''+channel_id+'''_reply (
                     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                    conversation_ts DOUBLE NOT NULL UNIQUE,
-                    reply_ts DOUBLE NOT NULL,
+                    conversation_ts DOUBLE NOT NULL,
+                    reply_ts DOUBLE NOT NULL UNIQUE,
                     user_id VARCHAR(50) NOT NULL,
                     text TEXT(2000) NOT NULL
                 );
