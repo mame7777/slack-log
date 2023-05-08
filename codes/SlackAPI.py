@@ -159,7 +159,7 @@ def GetAllReplyInfo(channel_list: list, ALLconversation_dict: dict) -> dict:
     return ALLReply_dict
 
 
-def SendMessage(text: str, username: str ='LogSaveBot', icon: str = ':pien:', channel: str='#bot_try') -> None:
+def SendMessage(text: str, username: str ='LogSaveBot', icon: str = ':pien:', channel: str='#99_bot_try') -> None:
     requests.post(os.environ.get("WEB_HOOK_URL"), data=json.dumps({
         # message
         "text":text,
